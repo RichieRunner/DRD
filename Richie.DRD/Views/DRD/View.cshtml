@@ -1,0 +1,90 @@
+﻿@model Richie.DRD.Models.Player
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>Player</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlayerPID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlayerPID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamPID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamPID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PositionEID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PositionEID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MLBTeamID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MLBTeamID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ABs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ABs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IPs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPs)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

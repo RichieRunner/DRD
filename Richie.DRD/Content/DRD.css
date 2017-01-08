@@ -1,0 +1,57 @@
+﻿
+.table > thead > tr > th,
+.table  > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  border: 0px solid;
+}
+
+/*.table > thead {
+    background: #808080;
+    color: white;
+}*/
+
+.fake-link{
+    cursor: pointer;
+}
+
+ul{
+    -moz-column-count: 4;
+    -webkit-column-count: 4;
+    column-count: 4;
+    list-style-type: none;
+    font-size: 12px;
+}
+
+ul li a {
+	border-bottom: 1px dotted #ddd; 
+    line-height: 2;
+}
+/*.links-bar li {
+	display: inline-block;
+	font-size: 10px;
+}
+
+.links-bar li a {
+	text-decoration: none;
+	border-bottom: 1px dotted #ddd; 
+	display: block; margin: 5px;
+
+
+table {
+    counter-reset: rowNumber;
+}
+
+table tr {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+}*/

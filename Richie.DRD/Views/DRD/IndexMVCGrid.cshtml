@@ -1,0 +1,25 @@
+﻿@using MVCGrid.Web
+
+@using Richie.DRD.Models;
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h2>Example</h2>
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Html.Partial("_MVCGridToolbar", new MVCGridToolbarModel()
+        {
+            MVCGridName = "PlayersGrid",
+            PageSize = true,
+            ColumnVisibility = true,
+            Export = true,
+            GlobalSearch = true
+        })
+        @Html.MVCGrid("PlayersGrid")
+    </div>
+</div>

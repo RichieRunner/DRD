@@ -1,0 +1,97 @@
+﻿@using Richie.DRD.Models
+
+@model IEnumerable<Richie.DRD.Models.Player>
+
+@*@{
+    ViewBag.Title = "Index";
+}*@
+
+<h2>
+    @Html.ActionLink("Minors", "Index/", "DRD")
+</h2>
+
+
+    @Html.Action("GetTeamIndex")
+
+<h1>Roster Size: @ViewBag.TeamRosterSize</h1>
+
+<hr />
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-header-group")">
+                @Html.DisplayNameFor(model => model.TeamName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MLBTeamAbbreviation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ABs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPs)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PositionName)
+        </td>
+        <td> 
+            @*@if(String.IsNullOrEmpty(item.MLBID.ToString()))*@
+            @if(item.MLBID > 0)
+            { 
+                <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>
+            }
+            else 
+            {
+            @Html.DisplayFor(modelItem => item.FullName)
+            }
+            
+    @*<a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>: @Html.DisplayFor(modelItem => item.FullName)*@
+
+
+            @*<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="please demote" data-toggle="tooltip"></span>*@
+        </td>
+        <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")">
+            @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MLBTeamAbbreviation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ABs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IPs)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id = item.PlayerPID}) 
+            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<script>
+    //$("table tr:contains('Luis')").addClass("danger").add("<p id='new'>new paragraph</p>")
+    $('td:contains("Luis")').parent().find('td:eq(0)').append($('<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="please demote" data-toggle="tooltip"></span>'));
+
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+@* add total number of players? either through badges with each team index, or as table header *@

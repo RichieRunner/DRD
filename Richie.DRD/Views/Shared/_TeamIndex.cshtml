@@ -1,0 +1,13 @@
+﻿@model Richie.DRD.ViewModels.TeamViewModel
+
+<ul class="links-bar">
+
+    @foreach (var item in Model.Teams.OrderBy(item => item.Text))
+    {
+        <li><a href="~/DRD/Index/@item.Value">@item.Text</a></li>
+    }
+
+</ul>
+
+
+
