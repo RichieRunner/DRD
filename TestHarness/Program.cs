@@ -13,7 +13,7 @@ namespace TestHarness
     {
         static void Main(string[] args)
         {
-            TestOutput1();
+            GetPlayer();
 
 
         }
@@ -39,6 +39,14 @@ namespace TestHarness
             }
 
 
+        }
+
+        static void GetPlayer()
+        {
+            DRDRepository repo = new DRDRepository();
+            var items = repo.GetPlayer(1);
+
+            Console.WriteLine(items.HasLostRookieStatus);
         }
 
     }
