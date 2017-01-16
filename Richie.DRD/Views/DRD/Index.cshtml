@@ -7,13 +7,15 @@
 }*@
 
 <h1>
-    @Html.ActionLink("Minors", "Index/", "DRD")
+    @Html.ActionLink("All Teams", "Index/", "DRD")
 </h1>
 
-
+<hr />
     @Html.Action("GetTeamIndex")
 
-<h3 class="unselectable">Roster Size: @ViewBag.TeamRosterSize</h3>
+<hr style="@(ViewBag.TeamPID > 16 ? "display:none" : "")" />
+
+<h4 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">@ViewBag.TeamName.TeamName: @ViewBag.TeamRosterSize/30 </h4>
 
 <hr />
 

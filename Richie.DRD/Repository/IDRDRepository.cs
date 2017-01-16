@@ -18,6 +18,7 @@ namespace Richie.DRD.Repository
         void EditPlayer(Player player);
 
         IEnumerable<Majors> ListMajors(int id);
+        Team GetTeam(int id);
 
     }
 }

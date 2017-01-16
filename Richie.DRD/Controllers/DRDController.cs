@@ -20,10 +20,12 @@ namespace Richie.DRD.Controllers
             int rosterSize;
 
             var players = drdRepo.ListPlayers(out rosterSize, id);
+            var team = drdRepo.GetTeam(id);
 
+            ViewBag.TeamName = team;
             ViewBag.TeamPID = id;
             ViewBag.TeamRosterSize = rosterSize;
-
+            
             return View(players.ToList());
         }
 

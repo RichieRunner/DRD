@@ -295,5 +295,42 @@ namespace Richie.DRD.Repository
                 return returnMajors;
             }
         }
+
+        public Team GetTeam(int id)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = @"DRD_Team_Get";
+
+                sqlCommand.Parameters.Add("TeamPID", SqlDbType.Int).Value = id;
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+
+                var returnTeam = new List<Team>();
+                using (var reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var team = new Team()
+                        {
+                            TeamPID = (int)reader["TeamPID"],
+                            TeamName = reader["TeamName"] as string ?? default(string)
+                        };
+                        returnTeam.Add(team);
+                    }
+                }
+                connection.Close();
+
+                if (returnTeam.Count() < 1)
+                {
+                    return new Team { TeamName = "" };
+                }
+                return returnTeam[0];
+
+            }
+        }
     }
 }

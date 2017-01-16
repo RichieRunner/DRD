@@ -38,7 +38,7 @@ namespace Richie.DRD.Repository
 
                     while (reader.Read())
                     {
-                        lookUpItem.DropDownList.Add(new SelectListItem { Text = (string)reader["TeamName"], Value = reader.GetInt16(0).ToString() });
+                        lookUpItem.DropDownList.Add(new SelectListItem { Text = (string)reader["TeamName"], Value = reader.GetInt32(0).ToString() });
                     }
                 }
 
@@ -107,7 +107,6 @@ namespace Richie.DRD.Repository
 
             //}
 
-            return lookUpItem;
 
         }
 

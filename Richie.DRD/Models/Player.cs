@@ -56,7 +56,7 @@ namespace Richie.DRD.Models
         {
             get
             {
-                return FullName + "(" + MLBTeamAbbreviation + "-" + PositionName + ")";
+                return FullName + " (" + MLBTeamAbbreviation + "-" + PositionName + ")";
             }
         }
 

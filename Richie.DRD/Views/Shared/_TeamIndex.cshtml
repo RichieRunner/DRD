@@ -1,13 +1,23 @@
 ﻿@model Richie.DRD.ViewModels.TeamViewModel
 
-<ul class="links-bar">
+<div class="centerMenu">
+    <ul class="nav links-bar" style="text-al">
 
-    @foreach (var item in Model.Teams.OrderBy(item => item.Text))
-    {
-        <li><a href="~/DRD/Index/@item.Value">@item.Text</a></li>
-    }
+        @foreach (var item in Model.Teams.OrderBy(item => item.Text))
+        {
+            <li class="active"><a href="~/DRD/Index/@item.Value">@item.Text</a></li>
+        }
 
-</ul>
+    </ul>
+</div>
 
 
 
+
+
+<script>
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+</script>

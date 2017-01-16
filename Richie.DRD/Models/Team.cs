@@ -10,10 +10,10 @@ namespace Richie.DRD.Models
         public int TeamPID { get; set; }
         public string TeamName { get; set; }
 
-        public string OwnerName { get; set; }
-        public string OwnerEmail { get; set; }
-        public bool IsActive { get; set; }
-        public DateTime StartDate { get; set; }
+        //public string OwnerName { get; set; }
+        //public string OwnerEmail { get; set; }
+        //public bool IsActive { get; set; }
+        //public DateTime StartDate { get; set; }
 
     }
 }
