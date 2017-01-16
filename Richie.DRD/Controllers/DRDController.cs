@@ -74,5 +74,11 @@ namespace Richie.DRD.Controllers
             return View(modelVM);
         }
 
+
+        public ActionResult GetMajors(int id = 99)
+        {
+            var majors = drdRepo.ListMajors(id);
+            return PartialView(@"~/Views/Shared/_Majors.cshtml", majors);
+        }
     }
 }

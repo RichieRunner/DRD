@@ -163,19 +163,6 @@ namespace Richie.DRD.Repository
         {
             using (var connection = new SqlConnection(this.connectionString))
             {
-                /*
-                var commandText = @"exec DRD_Player_List ";
-                commandText += @"@TeamPID = " + id;
-
-                var command = new SqlCommand(commandText, connection);
-
-                command.Parameters.Add(
-                    new SqlParameter { ParameterName = "TeamPID", DbType = DbType.Int32, Value = id }
-                    );
-                command.Parameters.Add(
-                    new SqlParameter { ParameterName = "RosterSize", SqlDbType = SqlDbType.Int, Direction = ParameterDirection.Output }
-                    );
-                */
 
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = connection;
@@ -203,24 +190,6 @@ namespace Richie.DRD.Repository
         {
             using (var connection = new SqlConnection(this.connectionString))
             {
-                //var commandText = @"exec DRD_Player_Update ";
-                //commandText += @"@PlayerPID = " + player.PlayerPID + ", ";
-                //commandText += @"@PositionEID = " + player.PositionEID + ", ";
-                //commandText += @"@MLBTeamID = " + player.MLBTeamID + ", ";
-                //commandText += @"@BREFID = " + player.BREFID;
-
-                //var command = new SqlCommand(commandText, connection);
-
-                //command.Parameters.Add(
-                //    new SqlParameter { ParameterName = "PlayerPID", DbType = DbType.Int32, Value = player.PlayerPID });
-                //command.Parameters.Add(
-                //    new SqlParameter { ParameterName = "PositionEID", DbType = DbType.Int32, Value = player.PositionEID });
-                //command.Parameters.Add(
-                //    new SqlParameter { ParameterName = "MLBTeamID", DbType = DbType.Int32, Value = player.MLBTeamID });
-                //command.Parameters.Add(
-                //    new SqlParameter { ParameterName = "BREFID", SqlDbType = SqlDbType.VarChar, Value = player.BREFID});
-
-
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Connection = connection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -246,7 +215,7 @@ namespace Richie.DRD.Repository
                 var command = new SqlCommand(commandText, connection);
 
                 command.Parameters.Add(
-                    new SqlParameter { ParameterName = "PlayerPID", DbType = DbType.Int32, Value = id }
+                    new SqlParameter { ParameterName = "PlayerPID", SqlDbType = SqlDbType.Int, Value = id }
                     );
 
                 connection.Open();
@@ -283,7 +252,9 @@ namespace Richie.DRD.Repository
                         TeamPID = reader["TeamPID"] as int? ?? default(int),
                         TeamName = reader["TeamName"] as string ?? default(string),
                         ABs = reader["ABs"] as int? ?? default(int),
-                        IPs = reader["IPs"] as int? ?? default(int)
+                        IPs = reader["IPs"] as int? ?? default(int),
+                        RookieQualifier = reader["RookieQualifier"] as string ?? default(string),
+                        HasLostRookieStatus = reader["HasLostRookieStatus"] as bool? ?? default(bool)
                     };
                     returnPlayers.Add(player);
                 }
@@ -292,5 +263,37 @@ namespace Richie.DRD.Repository
             }
         }
 
+
+        public IEnumerable<Majors> ListMajors(int id)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = @"DRD_Majors_List";
+
+                sqlCommand.Parameters.Add("TeamPID", SqlDbType.Int).Value = id;
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+                
+
+                var returnMajors = new List<Majors>();
+                using (var reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var majors = new Majors()
+                        {
+                            TeamPID = (int)reader["TeamPID"],
+                            Player = reader["Player"] as string ?? default(string)
+                        };
+                        returnMajors.Add(majors);
+                    }
+                }
+                connection.Close();
+                return returnMajors;
+            }
+        }
     }
 }

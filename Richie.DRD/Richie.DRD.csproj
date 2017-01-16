@@ -177,6 +177,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LookUpItem.cs" />
+    <Compile Include="Models\Majors.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MLBTeam.cs" />
     <Compile Include="Models\MVCGridToolbarModel.cs" />
@@ -256,6 +257,7 @@
     <Content Include="Views\Shared\_TeamIndex.cshtml" />
     <Content Include="Views\DRD\Edit.cshtml" />
     <Content Include="Views\DRD\View.cshtml" />
+    <Content Include="Views\Shared\_Majors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

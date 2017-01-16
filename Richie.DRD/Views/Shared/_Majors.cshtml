@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Richie.DRD.Models.Majors>
+
+<hr />
+
+<h3>Majors</h3>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Player)</th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Player)
+            </td>
+        </tr>
+    }
+
+</table>

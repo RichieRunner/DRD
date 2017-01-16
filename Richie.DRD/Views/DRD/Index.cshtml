@@ -6,14 +6,14 @@
     ViewBag.Title = "Index";
 }*@
 
-<h2>
+<h1>
     @Html.ActionLink("Minors", "Index/", "DRD")
-</h2>
+</h1>
 
 
     @Html.Action("GetTeamIndex")
 
-<h1>Roster Size: @ViewBag.TeamRosterSize</h1>
+<h3 class="unselectable">Roster Size: @ViewBag.TeamRosterSize</h3>
 
 <hr />
 
@@ -21,69 +21,54 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.PositionName)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-header-group")">
                 @Html.DisplayNameFor(model => model.TeamName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MLBTeamAbbreviation)
-            </th>
-            <th>
+            <th class="unselectable">
                 @Html.DisplayNameFor(model => model.ABs)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IPs)
             </th>
             <th></th>
         </tr>
     </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PositionName)
-        </td>
-        <td> 
-            @*@if(String.IsNullOrEmpty(item.MLBID.ToString()))*@
-            @if(item.MLBID > 0)
-            { 
-                <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>
-            }
-            else 
-            {
-            @Html.DisplayFor(modelItem => item.FullName)
-            }
+    @foreach (var item in Model) {
+        <tr>
+            <td> 
+                @*@if(String.IsNullOrEmpty(item.MLBID.ToString()))*@
+                @if(item.MLBID > 0)
+                { 
+                    <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.NameTag)</a>
+                }
+                else 
+                {
+                @Html.DisplayFor(modelItem => item.NameTag)
+                }
             
-    @*<a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>: @Html.DisplayFor(modelItem => item.FullName)*@
-
-
-            @*<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="please demote" data-toggle="tooltip"></span>*@
-        </td>
-        <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")">
-            @Html.DisplayFor(modelItem => item.TeamName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MLBTeamAbbreviation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ABs)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IPs)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id = item.PlayerPID}) 
-            @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-        </td>
-    </tr>
-}
+                @*<a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>: @Html.DisplayFor(modelItem => item.FullName)*@
+                @*<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="please demote" data-toggle="tooltip"></span>*@
+            </td>
+            <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")" class="unselectable">
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td class="@(item.ABs == 0 ? "noservicetime unselectable" : "unselectable")">
+                @Html.DisplayFor(modelItem => item.ABs)
+            </td>
+            <td class="unselectable">
+                @Html.ActionLink("Edit", "Edit", new { id = item.PlayerPID })
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
 
 </table>
+
+@if (ViewBag.TeamPID != 17)
+{
+    @Html.Action("GetMajors");
+}
 
 <script>
     //$("table tr:contains('Luis')").addClass("danger").add("<p id='new'>new paragraph</p>")

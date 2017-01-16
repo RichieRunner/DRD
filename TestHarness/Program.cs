@@ -13,7 +13,7 @@ namespace TestHarness
     {
         static void Main(string[] args)
         {
-            TestOutput();
+            TestOutput1();
 
 
         }
@@ -26,6 +26,19 @@ namespace TestHarness
             var items = repo.ListPlayers(out myRosterSize, 3);
 
             Console.WriteLine(myRosterSize.ToString());
+        }
+
+        static void TestOutput1()
+        {
+            DRDRepository repo = new DRDRepository();
+            var items = repo.ListMajors(1);
+
+            foreach (var item in items)
+            {
+                Console.WriteLine(item.Player);
+            }
+
+
         }
 
     }
