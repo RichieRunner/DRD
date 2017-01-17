@@ -6,17 +6,24 @@
     ViewBag.Title = "Index";
 }*@
 
-<h1>
-    @Html.ActionLink("All Teams", "Index/", "DRD")
-</h1>
+<div class="ext">
+    <div class="minorsHeader">
+        <span class="alignRight">Last Updated: @ViewBag.LastUpdatedDate</span>
+        <span class="alignLeftt">@Html.ActionLink("All Teams", "Index/", "DRD")</span>
+        
+    </div>
+</div>
 
 <hr />
+
+<div style="clear: both">
     @Html.Action("GetTeamIndex")
+</div>
 
-<hr style="@(ViewBag.TeamPID > 16 ? "display:none" : "")" />
-
-<h4 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">@ViewBag.TeamName.TeamName: @ViewBag.TeamRosterSize/30 </h4>
-
+<hr/>
+<h3 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">@ViewBag.TeamName.TeamName</h3>
+<h4 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">Minors: @ViewBag.TeamRosterSize/30 </h4>
+<h4 style="@(ViewBag.TeamPID < 17 ? "display:none" : "")">Minors</h4>
 <hr />
 
 <table class="table table-striped table-hover" id="minorsTable">
@@ -35,26 +42,26 @@
         </tr>
     </thead>
 
-    @foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr id="element">
-            <td id="nameTag"> 
+            <td id="nameTag">
                 @*@if(String.IsNullOrEmpty(item.MLBID.ToString()))*@
-                @if(item.MLBID > 0)
-                { 
+                @if (item.MLBID > 0)
+                {
                     <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.NameTag)</a>
                 }
-                else 
+                else
                 {
-                @Html.DisplayFor(modelItem => item.NameTag)
+                    @Html.DisplayFor(modelItem => item.NameTag)
                 }
                 <span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="Player has lost rookie eligibility" data-toggle="tooltip" style="@(item.HasLostRookieStatus == false ? "display: none" : "")"></span>
                 @*<a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>: @Html.DisplayFor(modelItem => item.FullName)*@
-                @*<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="please demote" data-toggle="tooltip"></span>*@
             </td>
             <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")" class="unselectable" id="hasLostRookieStatuss">
                 @Html.DisplayFor(modelItem => item.TeamName)
             </td>
-            <td class="@(item.ABs == 0 ? "noservicetime unselectable" : "unselectable")">
+            <td class="@(item.RookieQualifier == "0" ? "noservicetime unselectable" : "unselectable")">
                 @Html.DisplayFor(modelItem => item.RookieQualifier)
             </td>
             <td class="unselectable">
@@ -67,7 +74,7 @@
 
 </table>
 
-@if (ViewBag.TeamPID != 17)
+@if (ViewBag.TeamPID != 18)
 {
     @Html.Action("GetMajors");
 }
@@ -75,7 +82,7 @@
 <script>
     //$("table tr:contains('Luis')").addClass("danger").add("<p id='new'>new paragraph</p>")
     //$('table td:contains("IPs")').parent().find('td:eq(0)').append($('<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="please demote" data-toggle="tooltip"></span>'));
-    
+
     //var trTag = document.getElementsByTagName("tr");
     //var nameTD = document.getElementById("nameTag");
     //var valueTD = document.getElementById("hasLostRookieStatus");
@@ -84,7 +91,7 @@
     //    if (valueTD.textContent = "Emerald Tigers") {
     //        nameTD.style.backgroundColor = "green"
     //    }
-        
+
     //}
 
     $(document).ready(function () {

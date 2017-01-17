@@ -13,7 +13,7 @@ namespace TestHarness
     {
         static void Main(string[] args)
         {
-            GetPlayer();
+            TestDate();
 
 
         }
@@ -49,5 +49,15 @@ namespace TestHarness
             Console.WriteLine(items.HasLostRookieStatus);
         }
 
+        static void TestDate()
+        {
+            DRDRepository repo = new DRDRepository();
+            DateTime lastDate;
+            var items = repo.GetLastUpdatedDate(out lastDate);
+
+            Console.WriteLine(items.ToString());
+
+
+        }
     }
 }

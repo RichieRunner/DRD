@@ -88,24 +88,6 @@ namespace Richie.DRD.Repository
 
             return lookUpItem;
 
-            //using (var connection = new SqlConnection(this.connectionString))
-            //{
-            //    var commandText = "SELECT MLBTeamID, MLBTeamAbbreviation FROM DRD_TE_MLBTeam";
-
-            //    var command = new SqlCommand(commandText, connection);
-            //    connection.Open();
-
-            //    using (var reader = command.ExecuteReader())
-            //    {
-            //        lookUpItem.DropDownList = new List<SelectListItem>();
-
-            //        while (reader.Read())
-            //        {
-            //            lookUpItem.DropDownList.Add(new SelectListItem { Text = (string)reader["MLBTeamAbbreviation"], Value = reader.GetInt32(0).ToString() });
-            //        }
-            //    }
-
-            //}
 
 
         }

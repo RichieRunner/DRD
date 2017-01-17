@@ -43,7 +43,7 @@ namespace Richie.DRD.Models
         public int ABs { get; set; }
 
         [Display(Name = "MLB IPs")]
-        public int IPs { get; set; }
+        public decimal IPs { get; set; }
 
         [Display(Name = "MLB ABs/IPs")]
         public string RookieQualifier { get; set; }

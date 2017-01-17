@@ -51,7 +51,7 @@ namespace Richie.DRD.Repository
                             PositionName = reader["PositionName"] as string ?? default(string),
                             TeamPID = reader["TeamPID"] as int? ?? default(int),
                             ABs = reader["ABs"] as int? ?? default(int),
-                            IPs = reader["IPs"] as int? ?? default(int)
+                            IPs = reader["IPs"] as decimal? ?? default(decimal)
                         };
                         listModels.Add(player);
                     }
@@ -264,7 +264,7 @@ namespace Richie.DRD.Repository
         }
 
 
-        public IEnumerable<Majors> ListMajors(int id)
+        public IEnumerable<Majors> ListMajors(out int rosterSize, int id)
         {
             using (var connection = new SqlConnection(this.connectionString))
             {
@@ -274,9 +274,17 @@ namespace Richie.DRD.Repository
                 sqlCommand.CommandText = @"DRD_Majors_List";
 
                 sqlCommand.Parameters.Add("TeamPID", SqlDbType.Int).Value = id;
+
+                SqlParameter rosterSizeOutput = new SqlParameter("@RosterSize", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                rosterSizeOutput.Size = 5000;
+                sqlCommand.Parameters.Add(rosterSizeOutput);
+
                 connection.Open();
                 sqlCommand.ExecuteNonQuery();
-                
+                rosterSize = int.Parse(rosterSizeOutput.Value.ToString());
 
                 var returnMajors = new List<Majors>();
                 using (var reader = sqlCommand.ExecuteReader())
@@ -286,7 +294,8 @@ namespace Richie.DRD.Repository
                         var majors = new Majors()
                         {
                             TeamPID = (int)reader["TeamPID"],
-                            Player = reader["Player"] as string ?? default(string)
+                            Player = reader["Player"] as string ?? default(string),
+                            TeamName = reader["TeamName"] as string ?? default(string)
                         };
                         returnMajors.Add(majors);
                     }
@@ -332,5 +341,33 @@ namespace Richie.DRD.Repository
 
             }
         }
+
+        public DateTime GetLastUpdatedDate(out DateTime UpdatedDate)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = @"DRD_Web_status";
+
+                SqlParameter LastUpdatedDate = new SqlParameter("@LastUpdated", SqlDbType.DateTime)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                LastUpdatedDate.Size = 5;
+                sqlCommand.Parameters.Add(LastUpdatedDate);
+
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+                connection.Close();
+
+                UpdatedDate = DateTime.Parse(LastUpdatedDate.Value.ToString());
+
+                return UpdatedDate;
+
+            }
+        }
+
     }
 }

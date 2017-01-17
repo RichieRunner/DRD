@@ -17,8 +17,9 @@ namespace Richie.DRD.Repository
 
         void EditPlayer(Player player);
 
-        IEnumerable<Majors> ListMajors(int id);
+        IEnumerable<Majors> ListMajors(out int rosterSize, int id);
         Team GetTeam(int id);
+        DateTime GetLastUpdatedDate(out DateTime UpdatedDate);
 
     }
 }

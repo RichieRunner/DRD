@@ -12,5 +12,8 @@ namespace Richie.DRD.Models
 
         [Display(Name="Player")]
         public string Player { get; set; }
+
+        [Display(Name="Team")]
+        public string TeamName { get; set; }
     }
 }

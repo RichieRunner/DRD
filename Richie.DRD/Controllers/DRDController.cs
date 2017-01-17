@@ -18,14 +18,17 @@ namespace Richie.DRD.Controllers
         public ActionResult Index(int id = 17)
         {
             int rosterSize;
+            DateTime updatedDate;
 
             var players = drdRepo.ListPlayers(out rosterSize, id);
             var team = drdRepo.GetTeam(id);
+            var lastUpdatedDate = drdRepo.GetLastUpdatedDate(out updatedDate);
 
             ViewBag.TeamName = team;
             ViewBag.TeamPID = id;
             ViewBag.TeamRosterSize = rosterSize;
-            
+            ViewBag.LastUpdatedDate = lastUpdatedDate.ToString("MM/dd/yy");
+
             return View(players.ToList());
         }
 
@@ -77,9 +80,15 @@ namespace Richie.DRD.Controllers
         }
 
 
-        public ActionResult GetMajors(int id = 99)
+        public ActionResult GetMajors(int id = 17)
         {
-            var majors = drdRepo.ListMajors(id);
+            int rosterSize;
+
+            var majors = drdRepo.ListMajors(out rosterSize, id);
+
+            ViewBag.TeamPID = id;
+            ViewBag.TeamRosterSize = rosterSize;
+
             return PartialView(@"~/Views/Shared/_Majors.cshtml", majors);
         }
     }
