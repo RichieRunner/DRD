@@ -37,7 +37,13 @@ namespace Richie.DRD.Models
         [Display(Name="MLB Team")]
         public string MLBTeamAbbreviation { get; set; }
 
+        public DateTime MLBPromotionDate { get; set; }
+        public DateTime DRDPromotionDate { get; set; }
+        public DateTime DRDReleaseDate { get; set; }
 
+        public string CurrentLevel { get; set; }
+
+        public string Draft { get; set; }
 
         [Display(Name="MLB ABs")]
         public int ABs { get; set; }
@@ -48,6 +54,7 @@ namespace Richie.DRD.Models
         [Display(Name = "MLB ABs/IPs")]
         public string RookieQualifier { get; set; }
         public bool HasLostRookieStatus { get; set; }
+
 
         ///Custom field
         ///

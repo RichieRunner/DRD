@@ -16,7 +16,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Player.FullName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.Player.FullName, "Name: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <p class="form-control-static">
                     @Html.DisplayFor(m => m.Player.FullName)
@@ -25,23 +25,32 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Player.MLBTeamAbbreviation, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.Player.MLBTeamAbbreviation, "MLB Team: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.Player.MLBTeamID, Model.MLBTeams.OrderBy(o => o.Text), new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Player.PositionName, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.Player.PositionName, "Position: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.Player.PositionEID, Model.Positions, new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(m => m.Player.MLBID, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(m => m.Player.MLBID, "MLB ID: ", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(m => m.Player.MLBID, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Player.Draft, "Draft: ", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <p class="form-control-static">
+                    @Html.DisplayFor(m => m.Player.Draft)
+                </p>
             </div>
         </div>
 

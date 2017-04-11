@@ -244,7 +244,6 @@ namespace Richie.DRD.Repository
                         FirstName = reader["FirstName"] as string ?? default(string),
                         LastName = reader["LastName"] as string ?? default(string),
                         FullName = reader["FullName"] as string ?? default(string),
-                        YearDrafted = reader["YearDrafted"] as int? ?? default(int),
                         MLBTeamID = reader["MLBTeamID"] as int? ?? default(int),
                         MLBTeamAbbreviation = reader["MLBTeamAbbreviation"] as string ?? default(string),
                         PositionEID = reader["PositionEID"] as int? ?? default(int),
@@ -253,6 +252,7 @@ namespace Richie.DRD.Repository
                         TeamName = reader["TeamName"] as string ?? default(string),
                         ABs = reader["ABs"] as int? ?? default(int),
                         IPs = reader["IPs"] as int? ?? default(int),
+                        Draft = reader["Draft"] as string ?? default(string),
                         RookieQualifier = reader["RookieQualifier"] as string ?? default(string),
                         HasLostRookieStatus = reader["HasLostRookieStatus"] as bool? ?? default(bool)
                     };
