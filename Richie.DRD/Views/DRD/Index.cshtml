@@ -6,6 +6,11 @@
     ViewBag.Title = "Index";
 }*@
 
+<head>
+    <title></title>
+    <script src="https://use.fontawesome.com/b14c869114.js"></script>
+</head>
+
 <div class="ext">
     <div class="minorsHeader">
         <span class="alignRight">Last Updated: @ViewBag.LastUpdatedDate</span>
@@ -22,6 +27,7 @@
 
 <hr/>
 <h3 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">@ViewBag.TeamName.TeamName</h3>
+<i class="fa fa-camera-retro"></i>
 <h4 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">Minors: @ViewBag.TeamRosterSize/30 </h4>
 <h4 style="@(ViewBag.TeamPID < 17 ? "display:none" : "")">Minors</h4>
 <hr />
@@ -55,7 +61,11 @@
                 {
                     @Html.DisplayFor(modelItem => item.NameTag)
                 }
-                <span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="Player has lost rookie eligibility" data-toggle="tooltip" style="@(item.HasLostRookieStatus == false ? "display: none" : "")"></span>
+                <span class="fa-stack" title="Promoted to Majors" data-toggle="tooltip" style="@(item.DRDPromotionDate == default(DateTime) ? "display: none" : "")">
+                    <i class="fa fa-circle fa-stack-2x iconpromotion"></i>
+                    <i class="fa fa-angle-double-up fa-stack-1x fa-inverse"></i>
+                </span>
+                @*<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="Player has lost rookie eligibility" data-toggle="tooltip" style="@(item.HasLostRookieStatus == false ? "display: none" : "")"></span>*@
                 @*<a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>: @Html.DisplayFor(modelItem => item.FullName)*@
             </td>
             <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")" class="unselectable" id="hasLostRookieStatuss">

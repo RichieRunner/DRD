@@ -254,7 +254,8 @@ namespace Richie.DRD.Repository
                         IPs = reader["IPs"] as int? ?? default(int),
                         Draft = reader["Draft"] as string ?? default(string),
                         RookieQualifier = reader["RookieQualifier"] as string ?? default(string),
-                        HasLostRookieStatus = reader["HasLostRookieStatus"] as bool? ?? default(bool)
+                        HasLostRookieStatus = reader["HasLostRookieStatus"] as bool? ?? default(bool),
+                        DRDPromotionDate = reader["DRDPromotionDate"] as DateTime? ?? default(DateTime)
                     };
                     returnPlayers.Add(player);
                 }

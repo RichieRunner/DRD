@@ -57,6 +57,18 @@ ul li a {
 	/*border-bottom: 1px dotted #ddd;*/ 
     line-height: 2;
 }
+
+
+/*List View icons*/
+
+.iconpromotion {
+    color:  #16a085;
+}
+
+
+
+
+
 /*.links-bar li {
 	display: inline-block;
 	font-size: 10px;
