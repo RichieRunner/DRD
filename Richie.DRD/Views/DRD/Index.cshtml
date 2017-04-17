@@ -57,15 +57,10 @@
                     <strong class="fa-stack-1x fa-stack-text iconcurrentleveltext">@item.CurrentLevel</strong>
 
                 </span>
-
-                @if (item.MLBID > 0)
-                {
-                    <a class="nametag" href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.NameTag)</a>
-                }
-                else
-                {
-                    <a class="nametag">@Html.DisplayFor(modelItem => item.NameTag)</a>
-                }
+                <span class="nametag">
+                    @Html.ActionLink(@item.NameTag, "Edit", new { id = item.PlayerPID })
+                </span>
+                
                 <span class="fa-stack" title="Promoted to Majors" data-toggle="tooltip" style="@(item.DRDPromotionDate == default(DateTime) ? "display: none" : "")">
                     <i class="fa fa-circle fa-stack-2x iconpromotion"></i>
                     <i class="fa fa-level-up fa-stack-1x fa-inverse"></i>
@@ -88,9 +83,30 @@
                 @Html.DisplayFor(modelItem => item.RookieQualifier)
             </td>
             <td class="unselectable">
-                @Html.ActionLink("Edit", "Edit", new { id = item.PlayerPID })
                 @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                @if (item.MLBID > 0)
+                {
+                    <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">
+                        <img src="~/Images/MLB_Vector10x22.png" />
+                    </a>
+                }
+                else
+                {
+                    <img src="~/Images/MLB_Vector10x22_GrayScale.png" />
+                }
+                @* can't link to BREF yet, BREF link need first letter of player's last name 
+                @if (item.BREFID != null)
+                {
+                    <a href="http://www.baseball-reference.com/register/player.fcgi?id=@(item.BREFID)" target="_blank">
+                        <img class="resize" src="~/Images/BR.png" />
+                    </a>
+                }
+                else
+                {
+                    <img class="resize" src="~/Images/BR_GrayScale.png" />
+                }
+                *@
             </td>
         </tr>
     }

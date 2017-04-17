@@ -203,6 +203,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\BR.png" />
+    <Content Include="Images\BR10x10.png" />
+    <Content Include="Images\BR_Grayscale.png" />
+    <Content Include="Images\MLB.png" />
+    <Content Include="Images\MLB10x10.png" />
+    <Content Include="Images\MLB_Grayscale.png" />
+    <Content Include="Images\MLB_Vector.png" />
+    <Content Include="Images\MLB_Vector10x22.png" />
+    <Content Include="Images\MLB_Vector10x22_Grayscale.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -264,7 +273,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
-    <Folder Include="Images\" />
     <Folder Include="Views\Player\" />
   </ItemGroup>
   <ItemGroup>

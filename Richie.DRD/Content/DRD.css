@@ -59,8 +59,13 @@ ul li a {
 }
 
 .nametag {
-    padding-left: 10px;
+    padding-left: 12px;
 }
+
+/*img.resize {
+    width:22px;
+    height:10px;
+}*/
 
 /*List View icons*/
 
@@ -71,7 +76,7 @@ ul li a {
 }
 
 .iconmlboverallranking {
-    color:  #b03a2e  ;
+    color: #e74c3c   ;
 }
 
 .iconmlboverallrankingtext {
