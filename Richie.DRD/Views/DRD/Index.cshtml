@@ -27,7 +27,6 @@
 
 <hr/>
 <h3 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">@ViewBag.TeamName.TeamName</h3>
-<i class="fa fa-camera-retro"></i>
 <h4 style="@(ViewBag.TeamPID > 16 ? "display:none" : "")">Minors: @ViewBag.TeamRosterSize/30 </h4>
 <h4 style="@(ViewBag.TeamPID < 17 ? "display:none" : "")">Minors</h4>
 <hr />
@@ -52,21 +51,35 @@
     {
         <tr id="element">
             <td id="nameTag">
-                @*@if(String.IsNullOrEmpty(item.MLBID.ToString()))*@
+           
+                <span class="fa-stack" title="Current Level" data-toggle="tooltip">
+                    <i class="fa btn-danger fa-stack-2x "></i>
+                    <strong class="fa-stack-1x fa-stack-text iconcurrentleveltext">@item.CurrentLevel</strong>
+
+                </span>
+
                 @if (item.MLBID > 0)
                 {
-                    <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.NameTag)</a>
+                    <a class="nametag" href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.NameTag)</a>
                 }
                 else
                 {
-                    @Html.DisplayFor(modelItem => item.NameTag)
+                    <a class="nametag">@Html.DisplayFor(modelItem => item.NameTag)</a>
                 }
                 <span class="fa-stack" title="Promoted to Majors" data-toggle="tooltip" style="@(item.DRDPromotionDate == default(DateTime) ? "display: none" : "")">
                     <i class="fa fa-circle fa-stack-2x iconpromotion"></i>
-                    <i class="fa fa-angle-double-up fa-stack-1x fa-inverse"></i>
+                    <i class="fa fa-level-up fa-stack-1x fa-inverse"></i>
                 </span>
-                @*<span class="glyphicon glyphicon-ban-circle text-danger fake-link" title="Player has lost rookie eligibility" data-toggle="tooltip" style="@(item.HasLostRookieStatus == false ? "display: none" : "")"></span>*@
-                @*<a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">@Html.DisplayFor(modelItem => item.FullName)</a>: @Html.DisplayFor(modelItem => item.FullName)*@
+                <span class="fa-stack" title="MLB.com Overall Prospect Ranking" data-toggle="tooltip" style="@(item.MLBOverallRanking == 0 ? "display: none" : "")">
+                    <i class="fa fa-circle fa-stack-2x iconmlboverallranking"></i>
+                    <p class="fa-stack-1x fa-stack-text fa-inverse iconmlboverallrankingtext">@item.MLBOverallRanking</p>
+                </span>
+
+                <span class="fa-stack" title="Player has lost rookie eligibility" data-toggle="tooltip" style="@(item.HasLostRookieStatus == false ? "display: none" : "")">
+                    <i class="fa fa-circle fa-stack-2x iconlostrookiestatus"></i>
+                    <i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
+                </span>
+                
             </td>
             <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")" class="unselectable" id="hasLostRookieStatuss">
                 @Html.DisplayFor(modelItem => item.TeamName)

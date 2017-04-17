@@ -54,6 +54,7 @@ namespace Richie.DRD.Models
         [Display(Name = "MLB ABs/IPs")]
         public string RookieQualifier { get; set; }
         public bool HasLostRookieStatus { get; set; }
+        public Int16 MLBOverallRanking { get; set; }
 
 
         ///Custom field

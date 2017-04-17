@@ -58,12 +58,39 @@ ul li a {
     line-height: 2;
 }
 
+.nametag {
+    padding-left: 10px;
+}
 
 /*List View icons*/
+
+.iconcurrentleveltext {
+    font-size: smaller;
+    font-weight: bold;
+    /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+}
+
+.iconmlboverallranking {
+    color:  #b03a2e  ;
+}
+
+.iconmlboverallrankingtext {
+    font-size: smaller;
+    font-weight: bold;
+    /*font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;*/
+}
+
+.iconlostrookiestatus {
+    color: #f39c12;
+ ;
+}
 
 .iconpromotion {
     color:  #16a085;
 }
+
+
+
 
 
 

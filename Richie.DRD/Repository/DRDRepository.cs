@@ -255,7 +255,9 @@ namespace Richie.DRD.Repository
                         Draft = reader["Draft"] as string ?? default(string),
                         RookieQualifier = reader["RookieQualifier"] as string ?? default(string),
                         HasLostRookieStatus = reader["HasLostRookieStatus"] as bool? ?? default(bool),
-                        DRDPromotionDate = reader["DRDPromotionDate"] as DateTime? ?? default(DateTime)
+                        DRDPromotionDate = reader["DRDPromotionDate"] as DateTime? ?? default(DateTime),
+                        MLBOverallRanking = reader["MLBOverallRanking"] as Int16? ?? default(Int16),
+                        CurrentLevel = reader["CurrentLevel"] as string ?? default(string)
                     };
                     returnPlayers.Add(player);
                 }
