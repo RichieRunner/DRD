@@ -54,7 +54,7 @@
            
                 <span class="fa-stack" title="Current Level" data-toggle="tooltip">
                     <i class="fa btn-danger fa-stack-2x "></i>
-                    <strong class="fa-stack-1x fa-stack-text iconcurrentleveltext">@item.CurrentLevel</strong>
+                    <strong class="fa-stack-1x fa-stack-text iconcurrentleveltext @(item.CurrentLevel == "MLB" ? "iconcurrentlevelMLB" : "")">@item.CurrentLevel</strong>
 
                 </span>
                 <span class="nametag">
@@ -67,7 +67,7 @@
                 </span>
                 <span class="fa-stack" title="MLB.com Overall Prospect Ranking" data-toggle="tooltip" style="@(item.MLBOverallRanking == 0 ? "display: none" : "")">
                     <i class="fa fa-circle fa-stack-2x iconmlboverallranking"></i>
-                    <p class="fa-stack-1x fa-stack-text fa-inverse iconmlboverallrankingtext">@item.MLBOverallRanking</p>
+                    <strong class="fa-stack-1x fa-stack-text fa-inverse iconmlboverallrankingtext">@item.MLBOverallRanking</strong>
                 </span>
 
                 <span class="fa-stack" title="Player has lost rookie eligibility" data-toggle="tooltip" style="@(item.HasLostRookieStatus == false ? "display: none" : "")">
@@ -79,7 +79,7 @@
             <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")" class="unselectable" id="hasLostRookieStatuss">
                 @Html.DisplayFor(modelItem => item.TeamName)
             </td>
-            <td class="@(item.RookieQualifier == "0" ? "noservicetime unselectable" : "unselectable")">
+            <td class="@(item.RookieQualifier == "0" ? "noservicetime unselectable" : "unselectable") @(item.IsActive == false ? "hidetext" : "")">
                 @Html.DisplayFor(modelItem => item.RookieQualifier)
             </td>
             <td class="unselectable">

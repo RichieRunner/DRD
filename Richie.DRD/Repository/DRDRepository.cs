@@ -205,6 +205,21 @@ namespace Richie.DRD.Repository
             }
         }
 
+        public void PromotePlayer(int id)
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = "DRD_Player_Promote";
+                sqlCommand.Parameters.Add("@PlayerPID", SqlDbType.Int).Value = id;
+
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+            }
+        }
+
         public Player GetPlayer(int id)
         {
             using (var connection = new SqlConnection(this.connectionString))
@@ -255,6 +270,7 @@ namespace Richie.DRD.Repository
                         Draft = reader["Draft"] as string ?? default(string),
                         RookieQualifier = reader["RookieQualifier"] as string ?? default(string),
                         HasLostRookieStatus = reader["HasLostRookieStatus"] as bool? ?? default(bool),
+                        IsActive = reader["IsActive"] as bool? ?? default(bool),
                         DRDPromotionDate = reader["DRDPromotionDate"] as DateTime? ?? default(DateTime),
                         MLBOverallRanking = reader["MLBOverallRanking"] as Int16? ?? default(Int16),
                         CurrentLevel = reader["CurrentLevel"] as string ?? default(string)

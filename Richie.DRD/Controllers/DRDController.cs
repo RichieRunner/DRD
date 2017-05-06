@@ -79,6 +79,13 @@ namespace Richie.DRD.Controllers
             return View(modelVM);
         }
 
+        public ActionResult Promote(int id)
+        {
+            Player player = drdRepo.GetPlayer(id);
+
+            drdRepo.PromotePlayer(id);
+            return RedirectToAction("Index", new { id = player.TeamPID });
+        }
 
         public ActionResult GetMajors(int id = 17)
         {

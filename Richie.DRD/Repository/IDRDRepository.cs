@@ -21,5 +21,7 @@ namespace Richie.DRD.Repository
         Team GetTeam(int id);
         DateTime GetLastUpdatedDate(out DateTime UpdatedDate);
 
+        void PromotePlayer(int id);
+
     }
 }
