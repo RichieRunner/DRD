@@ -4,7 +4,7 @@
 @*@model IEnumerable<Richie.DRD.Models.Player>*@
 
 @{
-    ViewBag.Title = "Farm Ranking";
+    ViewBag.Title = "Farm Rankings";
 }
 
 
@@ -49,7 +49,7 @@
                                         @Html.DisplayFor(modelItem => item.RowNum)
                                     </td>
                                     <td>
-                                        <a href="~/DRD/IndexWithSideBar/@item.TeamPID">
+                                        <a href="~/DRD/Index/@item.TeamPID">
                                             @Html.DisplayFor(modelItem => item.TeamName)
                                         </a>
                                         
