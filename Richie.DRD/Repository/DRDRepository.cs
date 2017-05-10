@@ -388,5 +388,72 @@ namespace Richie.DRD.Repository
             }
         }
 
+
+        public IEnumerable<FarmRanking> ListFarmRanking()
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = @"DRD_FarmRanking_List";
+
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+
+                var returnFarmRanking = new List<FarmRanking>();
+                using (var reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var FarmRanking = new FarmRanking()
+                        {
+                            TeamPID = reader["TeamPID"] as int? ?? default(int),
+                            TeamName = reader["TeamName"] as string ?? default(string),
+                            RankingScore = reader["RankingScore"] as int? ?? default(int),
+                            NumberOfRookiesInTop100 = reader["NumberOfRookiesInTop100"] as int? ?? default(int),
+                            RookiesList = reader["RookiesList"] as string ?? default(string),
+                            RowNum = reader["RowNum"] as int? ?? default(int)
+                        };
+                        returnFarmRanking.Add(FarmRanking);
+                    }
+                }
+                connection.Close();
+                return returnFarmRanking;
+            }
+        }
+
+        public List<Team> ListTeams()
+        {
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.CommandText = @"DRD_Teams_List";
+
+                connection.Open();
+                sqlCommand.ExecuteNonQuery();
+
+                var returnTeams = new List<Team>();
+                using (var reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var team = new Team()
+                        {
+                            TeamPID = reader["TeamPID"] as int? ?? default(int),
+                            TeamName = reader["TeamName"] as string ?? default(string),
+                            RosterSize = reader["RosterSize"] as int? ?? default(int)
+                        };
+                        returnTeams.Add(team);
+                    }
+                }
+                connection.Close();
+                return returnTeams;
+            }
+        }
+
+
     }
 }

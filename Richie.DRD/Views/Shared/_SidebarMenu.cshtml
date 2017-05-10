@@ -1,0 +1,42 @@
+﻿@model Richie.DRD.ViewModels.TeamViewModel
+
+
+
+<div id="wrapper" class="toggled">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">Dead Red Dynasty</li>
+            <li class="active"><a href="~/DRD/Index">All Teams</a></li>
+            @foreach (var item in Model.ListOfTeamObject.OrderBy(item => item.TeamName))
+            {
+            <li>
+                <a href="~/DRD/Index/@item.TeamPID">
+                    @("- " + item.TeamName + " (" + @item.RosterSize + ")" )
+                </a>
+            </li>
+            }
+            <li class="active"><a href="~/DRD/FarmRanking">Farm Rankings</a></li>
+        </ul>
+    </div>
+
+</div>
+
+
+@*<div>
+    <ul>
+
+        @foreach (var item in Model.Teams.OrderBy(item => item.Text))
+        {
+            <li class="active"><a href="~/DRD/Index/@item.Value">@item.Text</a></li>
+        }
+
+    </ul>
+</div>
+
+<script>
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+</script>*@

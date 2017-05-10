@@ -25,8 +25,10 @@ namespace Richie.DRD
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/DRD.css"));
+                      "~/Content/simple-sidebar.css",
+                      //"~/Content/site.css",
+                      "~/Content/DRD.css",
+                      "~/Content/bla.css"));
         }
     }
 }

@@ -38,6 +38,24 @@ namespace Richie.DRD.Controllers
             return View();
         }
 
+        public ActionResult IndexWithSideBar(int id = 17)
+        {
+            int rosterSize;
+            DateTime updatedDate;
+
+            var players = drdRepo.ListPlayers(out rosterSize, id);
+            var team = drdRepo.GetTeam(id);
+            var lastUpdatedDate = drdRepo.GetLastUpdatedDate(out updatedDate);
+
+            ViewBag.TeamName = team;
+            ViewBag.TeamPID = id;
+            ViewBag.TeamRosterSize = rosterSize;
+            ViewBag.LastUpdatedDate = lastUpdatedDate.ToString("MM/dd/yy");
+
+            return View(players.ToList());
+        }
+
+
         public ActionResult GetTeamIndex()
         {
             // VM
@@ -45,6 +63,17 @@ namespace Richie.DRD.Controllers
 
             var teamVM = new TeamViewModel() { Teams = lookUpItem.DropDownList };
             return PartialView(@"~/Views/Shared/_TeamIndex.cshtml", teamVM);
+        }
+
+        public ActionResult SidebarMenu()
+        {
+            // VM
+            LookUpItem lookUpItem = lookUpRepo.getTeams();
+
+            List<Team> myTeams = drdRepo.ListTeams();
+
+            var teamVM = new TeamViewModel() { Teams = lookUpItem.DropDownList, ListOfTeamObject = myTeams};
+            return PartialView(@"~/Views/Shared/_SidebarMenu.cshtml", teamVM);
         }
 
         [HttpGet]
@@ -97,6 +126,13 @@ namespace Richie.DRD.Controllers
             ViewBag.TeamRosterSize = rosterSize;
 
             return PartialView(@"~/Views/Shared/_Majors.cshtml", majors);
+        }
+
+        public ActionResult FarmRanking()
+        {
+            var farmRanking = drdRepo.ListFarmRanking();
+
+            return View(farmRanking.ToList());
         }
     }
 }

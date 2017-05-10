@@ -12,6 +12,8 @@ namespace Richie.DRD.ViewModels
     {
         public Team Team { get; set; }
         public List<SelectListItem> Teams { get; set; }
+        public List<Team> ListOfTeamObject { get; set; }
+        public int RosterSize { get; set; }
 
     }
 }

@@ -94,7 +94,7 @@
                                     </td>
                                     <td class="unselectable">
                                         @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                         @if (item.MLBID > 0)
                                         {
                                             <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">
@@ -106,16 +106,16 @@
                                             <img src="~/Images/MLB_Vector10x22_GrayScale.png" />
                                         }
                                         @* can't link to BREF yet, BREF link need first letter of player's last name
-                                            @if (item.BREFID != null)
-                                            {
-                                                <a href="http://www.baseball-reference.com/register/player.fcgi?id=@(item.BREFID)" target="_blank">
-                                                    <img class="resize" src="~/Images/BR.png" />
-                                                </a>
-                                            }
-                                            else
-                                            {
-                                                <img class="resize" src="~/Images/BR_GrayScale.png" />
-                                            }*@
+                                        @if (item.BREFID != null)
+                                        {
+                                            <a href="http://www.baseball-reference.com/register/player.fcgi?id=@(item.BREFID)" target="_blank">
+                                                <img class="resize" src="~/Images/BR.png" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <img class="resize" src="~/Images/BR_GrayScale.png" />
+                                        }*@
                                     </td>
                                 </tr>
                             }
@@ -138,11 +138,6 @@
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
-        });
-
-
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
 

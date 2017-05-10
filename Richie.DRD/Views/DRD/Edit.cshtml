@@ -4,69 +4,66 @@
     ViewBag.Title = "Edit Player";
 }
 
-<h2>Edit</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        @*<h4>EditPlayerViewModel</h4>*@
-        @*<hr />*@
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Player.FullName, "Name: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <p class="form-control-static">
-                    @Html.DisplayFor(m => m.Player.FullName)
-                </p>
+    <div class="container body-content">
+        <h2>Edit</h2>
+        <div class="form-horizontal">
+            @*<h4>EditPlayerViewModel</h4>*@
+            @*<hr />*@
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Player.FullName, "Name: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <p class="form-control-static">
+                        @Html.DisplayFor(m => m.Player.FullName)
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Player.MLBTeamAbbreviation, "MLB Team: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Player.MLBTeamID, Model.MLBTeams.OrderBy(o => o.Text), new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Player.MLBTeamAbbreviation, "MLB Team: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Player.MLBTeamID, Model.MLBTeams.OrderBy(o => o.Text), new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Player.PositionName, "Position: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Player.PositionEID, Model.Positions, new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Player.PositionName, "Position: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Player.PositionEID, Model.Positions, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Player.MLBID, "MLB ID: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Player.MLBID, new { @class = "form-control" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Player.MLBID, "MLB ID: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Player.MLBID, new { @class = "form-control" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(m => m.Player.Draft, "Draft: ", new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <p class="form-control-static">
-                    @Html.DisplayFor(m => m.Player.Draft)
-                </p>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Player.Draft, "Draft: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <p class="form-control-static">
+                        @Html.DisplayFor(m => m.Player.Draft)
+                    </p>
+                </div>
             </div>
+
+            @Html.ActionLink("Back to List", "Index", Model.Player.TeamPID)
+            @*<input type="button" value="Promote" class="btn btn-success pull-right" onclick="location.href='@Url.Action("Promote","DRD", Model.Player.PlayerPID)'" />*@
+
+            <input type="submit" value="Save" class="btn btn-primary pull-right" />
+
+            @*@Html.ActionLink("Checkout and view order list", "Order", "Order", null, new { onclick = "return confirm('Are you sure you want to click this link?')" })*@
+
         </div>
+    </div>
 
-
-        <input type="button" value="Promote" class="btn btn-success pull-right" onclick="location.href='@Url.Action("Promote","DRD", Model.Player.PlayerPID)'" />
-
-        <input type="submit" value="Save" class="btn btn-primary pull-right" />
-
-        @Html.ActionLink("Checkout and view order list", "Order", "Order", null, new { onclick = "return confirm('Are you sure you want to click this link?')" })
-
-        </div>
-
-    
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index", Model.Player.TeamPID)
-</div>
-

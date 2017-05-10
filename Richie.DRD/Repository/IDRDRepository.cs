@@ -22,6 +22,8 @@ namespace Richie.DRD.Repository
         DateTime GetLastUpdatedDate(out DateTime UpdatedDate);
 
         void PromotePlayer(int id);
+        IEnumerable<FarmRanking> ListFarmRanking();
+        List<Team> ListTeams();
 
     }
 }
