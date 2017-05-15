@@ -220,6 +220,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.toaster.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -270,7 +271,7 @@
     <Content Include="Views\DRD\Edit.cshtml" />
     <Content Include="Views\DRD\View.cshtml" />
     <Content Include="Views\Shared\_Majors.cshtml" />
-    <Content Include="Views\DRD\IndexWithSideBar.cshtml" />
+    <Content Include="Views\DRD\IndexWithDataTables.cshtml" />
     <Content Include="Views\Shared\_SidebarMenu.cshtml" />
     <Content Include="Views\DRD\FarmRanking.cshtml" />
   </ItemGroup>

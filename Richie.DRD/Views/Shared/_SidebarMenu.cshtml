@@ -10,10 +10,11 @@
             <li class="active"><a href="~/DRD/Index">All Teams</a></li>
             @foreach (var item in Model.ListOfTeamObject.OrderBy(item => item.TeamName))
             {
-            <li>
-                <a href="~/DRD/Index/@item.TeamPID">
-                    @("- " + item.TeamName + " (" + @item.RosterSize + ")" )
+            <li >
+                <a href="~/DRD/Index/@item.TeamPID" class="secondLevelIndent">
+                    @(item.TeamName + " (" + @item.RosterSize + ")")
                 </a>
+
             </li>
             }
             <li class="active"><a href="~/DRD/FarmRanking">Farm Rankings</a></li>

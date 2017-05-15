@@ -8,6 +8,8 @@ namespace Richie.DRD.Models
 {
     public class Player
     {
+        [Display(Name="")]
+        public string RowNum { get; set; }
         public int PlayerPID { get; set; }
 
         public int MLBID { get; set; }

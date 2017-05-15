@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Index</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
@@ -41,13 +41,16 @@
                         <h4 style="@(ViewBag.TeamPID < 17 ? "display:none" : "")">Minors</h4>
                         <p style="@(ViewBag.TeamPID < 17 ? "display:none" : "")">The following is a listing of all rookies that have been drafted and are currently owned by their respective teams. Please check to see if that player isn't already owned here before adding them on Yahoo.</p>
 
-                        <table class="table table-striped table-hover" id="minorsTable">
+                        <table class="display compact" id="minorsTable">
                             <thead>
                                 <tr>
                                     <th>
+                                        @Html.DisplayNameFor(model => model.RowNum)
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.FullName)
                                     </th>
-                                    <th style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-header-group")">
+                                    <th style="@(ViewBag.TeamPID != 18 ? "display:none" : "table-header-group")">
                                         @Html.DisplayNameFor(model => model.TeamName)
                                     </th>
                                     <th class="unselectable">
@@ -60,12 +63,13 @@
                             @foreach (var item in Model)
                             {
                                 <tr id="element">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.RowNum)
+                                    </td>
                                     <td id="nameTag">
-
                                         <span class="fa-stack" title="Current Level" data-toggle="tooltip">
                                             <i class="fa btn-danger fa-stack-2x "></i>
                                             <strong class="fa-stack-1x fa-stack-text iconcurrentleveltext @(item.CurrentLevel == "MLB" ? "iconcurrentlevelMLB" : "")">@item.CurrentLevel</strong>
-
                                         </span>
                                         <span class="nametag">
                                             @Html.ActionLink(@item.NameTag, "Edit", new { id = item.PlayerPID })
@@ -86,7 +90,7 @@
                                         </span>
 
                                     </td>
-                                    <td style="@(ViewBag.TeamPID != 17 ? "display:none" : "table-cell")" class="unselectable" id="hasLostRookieStatuss">
+                                    <td style="@(ViewBag.TeamPID != 18 ? "display:none" : "table-cell")" class="unselectable" id="hasLostRookieStatuss">
                                         @Html.DisplayFor(modelItem => item.TeamName)
                                     </td>
                                     <td class="@(item.RookieQualifier == "0" ? "noservicetime unselectable" : "unselectable") @(item.IsActive == false ? "hidetext" : "")">
@@ -94,7 +98,7 @@
                                     </td>
                                     <td class="unselectable">
                                         @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                         @if (item.MLBID > 0)
                                         {
                                             <a href="http://m.mlb.com/player/@(item.MLBID)" target="_blank">
@@ -106,16 +110,16 @@
                                             <img src="~/Images/MLB_Vector10x22_GrayScale.png" />
                                         }
                                         @* can't link to BREF yet, BREF link need first letter of player's last name
-                                        @if (item.BREFID != null)
-                                        {
-                                            <a href="http://www.baseball-reference.com/register/player.fcgi?id=@(item.BREFID)" target="_blank">
-                                                <img class="resize" src="~/Images/BR.png" />
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <img class="resize" src="~/Images/BR_GrayScale.png" />
-                                        }*@
+                                            @if (item.BREFID != null)
+                                            {
+                                                <a href="http://www.baseball-reference.com/register/player.fcgi?id=@(item.BREFID)" target="_blank">
+                                                    <img class="resize" src="~/Images/BR.png" />
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <img class="resize" src="~/Images/BR_GrayScale.png" />
+                                            }*@
                                     </td>
                                 </tr>
                             }
@@ -126,19 +130,47 @@
                 </div>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
     <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-    <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function (e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        $(document).ready(function () {
+            var myTable = $('#minorsTable').DataTable({
+
+                fixedHeader: {
+                    header: true
+                },
+                paging: true,
+                pageLength: 90,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search for player name or team name"
+                },
+                lengthChange: false,
+                ordering: false,
+                searchDelay: 300,
+
+                rowGroup: {
+                    dataSrc: 2
+                },
+
+                mark: true
+
+                });
+
+
+        });
+
     </script>
 
 </body>

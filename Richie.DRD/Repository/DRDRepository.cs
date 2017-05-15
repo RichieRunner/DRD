@@ -252,7 +252,8 @@ namespace Richie.DRD.Repository
                 while (reader.Read())
                 {
                     var player = new Player()
-                    {
+                    {   
+                        RowNum = reader["RowNum"] as string ?? default(string),
                         PlayerPID = (int)reader["PlayerPID"],
                         MLBID = reader["MLBID"] as int? ?? default(int),
                         BREFID = reader["BREFID"] as string ?? default(string),

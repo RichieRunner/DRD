@@ -38,7 +38,7 @@ namespace Richie.DRD.Controllers
             return View();
         }
 
-        public ActionResult IndexWithSideBar(int id = 17)
+        public ActionResult IndexWithDataTables(int id = 17)
         {
             int rosterSize;
             DateTime updatedDate;

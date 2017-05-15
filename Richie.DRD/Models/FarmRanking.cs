@@ -9,7 +9,7 @@ namespace Richie.DRD.Models
     public class FarmRanking
     {
 
-        [Display(Name = "#")]
+        [Display(Name = "Rank")]
         public int RowNum { get; set; }
 
         public int TeamPID { get; set; }
@@ -17,9 +17,9 @@ namespace Richie.DRD.Models
         public string TeamName { get; set; }
         [Display(Name = "Score")]
         public int RankingScore { get; set; }
-        [Display(Name = "RookiesInTop100")]
+        [Display(Name = "Count")]
         public int NumberOfRookiesInTop100 { get; set; }
-        [Display(Name = "Rookies")]
+        [Display(Name = "Prospects")]
         public string RookiesList { get; set; }
 
 
