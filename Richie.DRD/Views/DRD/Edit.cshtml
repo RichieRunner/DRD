@@ -69,18 +69,17 @@
                     <div class="">
                         @Html.ActionLink("Back to List", "Index", Model.Player.TeamPID)
 
-
-                        <div class="myform" button>
+                        @*<div class="myform" button>
                             <input type="button" value="Make Toast" class="btn btn-danger" id="maketoastbutton" />
-                        </div>
+                        </div>*@
 
                         <div class="myform button">
                             <input type="submit" value="Save" class="btn btn-primary" id="maketoastbutton" />
                         </div>
 
-                        <div class="myform button">
+                        @*<div class="myform button">
                             @Html.ActionLink("Promote Player", "Promote", new { id = Model.Player.PlayerPID }, new { onclick = "return confirm('Are you sure you want to promote " + @Model.Player.FullName + " to your Yahoo MLB roster?')", @class = "btn btn-success"})
-                        </div>
+                        </div>*@
                         
 
                     </div>
@@ -103,24 +102,11 @@
 
         //$('#maketoastbutton').click(makeToast);
 
-        $('#maketoastbutton').click(function () {
-            sessionStorage.reloadAfterPageLoad = true;
-            window.location.reload();
-        });
         
-        $(function () {
-            if (sessionStorage.reloadAfterPageLoad) {
-                alert("herro");
-                sessionStorage.reloadAfterPageLoad = false;
-            }
-        })
-
         function makeToast() {
             $.toaster({ priority: 'success', title: 'title', message: 'Toast Made!' });
         };
 
-
-        
     </script>
 
 </body>
